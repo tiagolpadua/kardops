@@ -8,17 +8,19 @@ It provides end-to-end traceability, conflict-free parallel execution, minimum v
 
 | Language       | Docs             |
 | -------------- | ---------------- |
-| English        | [en/](en/)       |
-| Portugues (BR) | [pt-br/](pt-br/) |
-| Espanol        | [es/](es/)       |
+| English        | [en/kanban/](en/kanban/)       |
+| Portugues (BR) | [pt-br/kanban/](pt-br/kanban/) |
+| Espanol        | [es/kanban/](es/kanban/)       |
 
 ## Quick Start
 
 1. Choose your language above.
-2. Read the `README.md` in that folder.
-3. Copy the `kanban/` folder into your project.
-4. Create your validation script (e.g., `npm run prettier`).
+2. Read `<lang>/kanban/README.md`.
+3. Copy the `<lang>/kanban/` folder into your project.
+4. Create your validation script (e.g., `npm run lint && npm test`).
 5. Start creating cards!
+
+You can also download the pre-packaged Kanban asset for your language directly from the project's [GitHub Releases page](https://github.com/tiagolpadua/kardops/releases).
 
 ## Tool Independence
 
@@ -32,14 +34,14 @@ You can run the methodology with what your team already uses day to day:
 
 ## Structure
 
-Each language folder contains:
+Each language pack is organized as:
 
 ```text
 <lang>/
-├── README.md              # Full methodology overview
-├── instructions.md        # Detailed operational rules
-├── prompts.md             # Reusable prompt catalog for agents
-└── kanban/                # Ready-to-copy board structure
+└── kanban/
+    ├── README.md              # Full methodology overview
+    ├── instructions.md        # Detailed operational rules
+    ├── prompts.md             # Reusable prompt catalog for agents
     ├── 0-backlog/
     │   └── backlog.md
     ├── 1-todo/
@@ -56,9 +58,10 @@ Each language folder contains:
 Contributions and translations to new languages are welcome. To add a new language:
 
 1. Create a new folder with the language code (e.g., `fr/`, `de/`).
-2. Translate `README.md`, `instructions.md`, and `prompts.md`.
-3. Copy the `kanban/` structure with translated content in `backlog.md` and the card template.
-4. Keep all folder names unchanged — they are part of the KardOps methodology.
+2. Create `kanban/` inside it.
+3. Translate `kanban/README.md`, `kanban/instructions.md`, and `kanban/prompts.md`.
+4. Copy the board structure under `kanban/` with translated content in `0-backlog/backlog.md` and `9-templates/CARD-001-template.md`.
+5. Keep all folder names unchanged — they are part of the KardOps methodology.
 
 ## Versioning and Releases
 
