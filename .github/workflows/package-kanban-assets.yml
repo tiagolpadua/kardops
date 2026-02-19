@@ -1,0 +1,72 @@
+name: Package Kanban Assets
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  package-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run markdown lint
+        run: npm run lint:md
+
+      - name: Read and validate package.json version
+        id: version
+        run: |
+          VERSION="$(node -p "require('./package.json').version")"
+          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Invalid package.json version: '$VERSION'"
+            echo "Expected semantic version in format x.y.z"
+            exit 1
+          fi
+
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Build ZIP assets by language
+        run: |
+          mkdir -p dist
+
+          for LL in en es pt-br; do
+            TMP_DIR="$(mktemp -d)"
+            cp -R "$LL/kanban" "$TMP_DIR/kanban"
+            (
+              cd "$TMP_DIR"
+              zip -r "$GITHUB_WORKSPACE/dist/kardops-${LL}_${VERSION}.zip" kanban
+            )
+          done
+
+          ls -lah dist
+
+      - name: Create or update release with assets
+        uses: ncipollo/release-action@v1
+        with:
+          tag: v${{ env.VERSION }}
+          name: KardOps v${{ env.VERSION }}
+          artifacts: |
+            dist/kardops-en_${{ env.VERSION }}.zip
+            dist/kardops-es_${{ env.VERSION }}.zip
+            dist/kardops-pt-br_${{ env.VERSION }}.zip
+          artifactErrorsFailBuild: true
+          allowUpdates: true
+          replacesArtifacts: true
+          generateReleaseNotes: true
+          makeLatest: true

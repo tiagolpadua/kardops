@@ -1,15 +1,15 @@
-# KardOps — Instrucoes Operacionais
+# KardOps — Instruções Operacionais
 
-Este documento define as regras operacionais da metodologia KardOps para gestao de tarefas via arquivos Markdown dentro de `kanban/`.
+Este documento define as regras operacionais da metodologia KardOps para gestão de tarefas via arquivos Markdown dentro de `kanban/`.
 
 ## 1. Estrutura
 
 - `0-backlog/backlog.md`: fonte de verdade do que ainda precisa ser feito no projeto.
 - `1-todo/`: cards prontos para iniciar.
 - `2-doing/`: cards em andamento.
-- `3-blocked/`: cards temporariamente bloqueados por dependencia externa, falha nao relacionada ou impedimento tecnico.
-- `4-done/`: cards concluidos e validados.
-- `5-archive/`: cards concluidos arquivados (mais de 30 dias em `4-done/`).
+- `3-blocked/`: cards temporariamente bloqueados por dependência externa, falha não relacionada ou impedimento técnico.
+- `4-done/`: cards concluídos e validados.
+- `5-archive/`: cards concluídos arquivados (mais de 30 dias em `4-done/`).
 - `9-templates/`: modelos oficiais de card.
 
 ## 2. Fluxo de Trabalho
@@ -17,68 +17,68 @@ Este documento define as regras operacionais da metodologia KardOps para gestao 
 1. Registrar demandas no `0-backlog/backlog.md`.
 2. Quebrar backlog em cards menores e independentes.
 3. Criar um arquivo `.md` por card em `1-todo/` usando template oficial.
-4. **[IMPORTANTE]** Ao iniciar execucao, **MOVER IMEDIATAMENTE** o card para `2-doing/`.
+4. **[IMPORTANTE]** Ao iniciar execução, **MOVER IMEDIATAMENTE** o card para `2-doing/`.
    - Atualizar o status no card para `status: doing`.
    - Nunca trabalhar um card que esteja em `1-todo/`.
 5. Implementar a tarefa e atualizar o card com progresso objetivo (data + resultado).
 6. Se houver impedimento real, mover para `3-blocked/` e registrar causa/bloqueio.
 7. Ao desbloquear, mover de `3-blocked/` para `2-doing/`.
-8. Antes de finalizar, executar o script de validacao do projeto. Cada repositorio deve manter seu proprio script de validacao na raiz, cobrindo no minimo: analise estatica e testes automatizados. O formato do script e livre (shell script, Makefile, npm script, etc.).
-9. Apenas se a validacao passar e os criterios estiverem marcados, atualizar status para `status: done` e mover para `4-done/`.
+8. Antes de finalizar, executar o script de validação do projeto. Cada repositório deve manter seu próprio script de validação na raiz, cobrindo no mínimo: análise estática e testes automatizados. O formato do script é livre (shell script, Makefile, npm script, etc.).
+9. Apenas se a validação passar e os critérios estiverem marcados, atualizar status para `status: done` e mover para `4-done/`.
 
-**FLUXO OBRIGATORIO: `1-todo/` -> `2-doing/` -> `4-done/` (ou `3-blocked/` durante)**
+**FLUXO OBRIGATÓRIO: `1-todo/` -> `2-doing/` -> `4-done/` (ou `3-blocked/` durante)**
 
-**ANTI-PADRAO: NAO mover direto de `1-todo/` para `4-done/` sem passar por `2-doing/`**
+**ANTI-PADRÃO: NÃO mover direto de `1-todo/` para `4-done/` sem passar por `2-doing/`**
 
-## 3. Regras Obrigatorias para Cards
+## 3. Regras Obrigatórias para Cards
 
 Todo card deve conter:
 
-- `id`: identificador unico (ex.: `CARD-001`).
-- `titulo`: objetivo curto e claro.
+- `id`: identificador único (ex.: `CARD-001`).
+- `título`: objetivo curto e claro.
 - `prioridade`: `P0`, `P1`, `P2` ou `P3`.
-- `origem`: referencia rastreavel (backlog, analise tecnica, issue, ou outro documento do projeto).
-- `descricao`: contexto funcional/tecnico.
-- `escopo`: o que entra e o que nao entra.
-- `plano de implementacao`: passos tecnicos em ordem.
-- `criterios de aceite`: checklist verificavel.
-- `validacao`: comandos/testes que comprovam conclusao.
+- `origem`: referência rastreável (backlog, análise técnica, issue, ou outro documento do projeto).
+- `descrição`: contexto funcional/técnico.
+- `escopo`: o que entra e o que não entra.
+- `plano de implementacao`: passos técnicos em ordem.
+- `critérios de aceite`: checklist verificável.
+- `validação`: comandos/testes que comprovam conclusão.
 - `status`: `todo`, `doing`, `blocked` ou `done`.
 - `progresso`: log temporal curto e objetivo.
 
 Campos opcionais:
 
-- `tamanho`: `P`, `M` ou `G` — estimativa de esforco para apoiar decisoes de WIP e planejamento.
+- `tamanho`: `P`, `M` ou `G` — estimativa de esforço para apoiar decisões de WIP e planejamento.
 
-## 4. Regras de Consistencia
+## 4. Regras de Consistência
 
-- **O fluxo correto e sempre: `1-todo/` -> `2-doing/` -> `4-done/` (ou `3-blocked/` durante a execucao).**
+- **O fluxo correto é sempre: `1-todo/` -> `2-doing/` -> `4-done/` (ou `3-blocked/` durante a execução).**
 - **NUNCA mover diretamente de `1-todo/` para `4-done/`.**
-- O mesmo `id` nao pode existir em mais de uma coluna ao mesmo tempo.
-- Movimentacao e por `mv` (nunca copiar card entre colunas).
+- O mesmo `id` não pode existir em mais de uma coluna ao mesmo tempo.
+- Movimentação é por `mv` (nunca copiar card entre colunas).
 - Card em `2-doing` deve ter:
   - `status: doing`
   - progresso atualizado regularmente com timestamps
 - Card em `4-done` deve ter:
   - `status: done`
-  - criterios de aceite marcados
-  - validacao obrigatoria marcada
-  - data de conclusao no progresso
+  - critérios de aceite marcados
+  - validação obrigatória marcada
+  - data de conclusão no progresso
 - Card em `3-blocked` deve explicitar:
   - `status: blocked`
   - motivo do bloqueio
-  - acao necessaria para desbloquear
+  - ação necessária para desbloquear
   - timestamp de quando foi bloqueado
 
-## 5. Convencao de Nome de Arquivo
+## 5. Convenção de Nome de Arquivo
 
-Padrao: `kanban/<coluna>/CARD-XXX-slug-curto.md`
+Padrão: `kanban/<coluna>/CARD-XXX-slug-curto.md`
 
 Exemplo: `kanban/1-todo/CARD-012-ajustar-sync-offline.md`
 
-## 6. Controle de Sequencia de IDs
+## 6. Controle de Sequência de IDs
 
-O campo `ultimo_id` no final de `0-backlog/backlog.md` registra o ultimo ID utilizado. Antes de criar um novo card, verificar este campo e usar o proximo sequencial. Apos criar, atualizar o campo.
+O campo `ultimo_id` no final de `0-backlog/backlog.md` registra o último ID utilizado. Antes de criar um novo card, verificar este campo e usar o próximo sequencial. Após criar, atualizar o campo.
 
 ## 7. Template Oficial
 
@@ -87,31 +87,31 @@ Template oficial: `kanban/9-templates/CARD-001-template.md`
 Processo recomendado:
 
 1. Duplicar o template para `1-todo/` com novo nome.
-2. Atualizar `id`, titulo, prioridade e origem.
-3. Preencher descricao, escopo, plano, criterios e validacao.
+2. Atualizar `id`, título, prioridade e origem.
+3. Preencher descrição, escopo, plano, critérios e validação.
 
-## 8. Qualidade Minima por Card
+## 8. Qualidade Mínima por Card
 
-- Plano de implementacao com passos executaveis (nao apenas decisao vaga).
-- Criterios de aceite passiveis de verificacao objetiva.
-- Validacao com comandos reais do projeto.
+- Plano de implementacao com passos executáveis (não apenas decisão vaga).
+- Critérios de aceite passíveis de verificação objetiva.
+- Validação com comandos reais do projeto.
 - Escopo com limites claros para evitar crescimento indefinido.
 
-## 9. Politica de WIP e Bloqueios
+## 9. Política de WIP e Bloqueios
 
-- WIP recomendado em `2-doing`: maximo 3 cards simultaneos.
-- Cards bloqueados nao devem ficar em `2-doing`.
-- Bloqueio por falha nao relacionada deve ser registrado em `progresso` e no item de validacao.
+- WIP recomendado em `2-doing`: máximo 3 cards simultâneos.
+- Cards bloqueados não devem ficar em `2-doing`.
+- Bloqueio por falha não relacionada deve ser registrado em `progresso` e no item de validação.
 
-## 10. Transicoes de Estado Permitidas
+## 10. Transições de Estado Permitidas
 
 **Fluxo Normal (Caminho Feliz):**
 
 ```text
 1-todo/ (status: todo)
-  | [ao iniciar execucao]
+  | [ao iniciar execução]
 2-doing/ (status: doing)
-  | [apos completar, testar e validar]
+  | [após completar, testar e validar]
 4-done/ (status: done)
 ```
 
@@ -119,24 +119,24 @@ Processo recomendado:
 
 ```text
 1-todo/ (status: todo)
-  | [ao iniciar execucao]
+  | [ao iniciar execução]
 2-doing/ (status: doing)
   | [ao encontrar impedimento real]
 3-blocked/ (status: blocked)
   | [ao desbloquear]
 2-doing/ (status: doing)
-  | [apos completar, testar e validar]
+  | [após completar, testar e validar]
 4-done/ (status: done)
 ```
 
-**Transicoes NAO Permitidas:**
+**Transições NÃO Permitidas:**
 
 - `1-todo/` -> `4-done/` (pular `2-doing/`)
 - `1-todo/` -> `3-blocked/` (bloquear sem iniciar)
-- `4-done/` -> `2-doing/` (reabrir sem motivo explicito)
-- Deixar card em `1-todo/` enquanto esta sendo trabalhado
+- `4-done/` -> `2-doing/` (reabrir sem motivo explícito)
+- Deixar card em `1-todo/` enquanto está sendo trabalhado
 
-## 11. Checklists de Transicao
+## 11. Checklists de Transição
 
 ### todo -> doing
 
@@ -144,15 +144,15 @@ Antes de mover:
 
 - [ ] Li completamente o card, incluindo plano de implementacao
 - [ ] Entendo todos os passos do plano
-- [ ] Identifiquei os pre-requisitos e dependencias
-- [ ] Tenho claro quais sao os criterios de aceite
-- [ ] Identifiquei os comandos de validacao
+- [ ] Identifiquei os pré-requisitos e dependências
+- [ ] Tenho claro quais são os critérios de aceite
+- [ ] Identifiquei os comandos de validação
 
 Ao mover:
 
 - [ ] Movi o arquivo de `1-todo/` para `2-doing/`
 - [ ] Atualizei `status: doing` no card
-- [ ] Adicionei timestamp de inicio na secao de progresso
+- [ ] Adicionei timestamp de início na seção de progresso
 
 ### doing -> blocked
 
@@ -160,8 +160,8 @@ Ao mover:
 
 - [ ] Movi o arquivo de `2-doing/` para `3-blocked/`
 - [ ] Atualizei `status: blocked` no card
-- [ ] Preenchi a secao `## Bloqueio` com motivo, impacto e acao para desbloquear
-- [ ] Adicionei timestamp do bloqueio na secao de progresso
+- [ ] Preenchi a seção `## Bloqueio` com motivo, impacto e ação para desbloquear
+- [ ] Adicionei timestamp do bloqueio na seção de progresso
 
 ### blocked -> doing
 
@@ -169,57 +169,57 @@ Ao mover:
 
 - [ ] Movi o arquivo de `3-blocked/` para `2-doing/`
 - [ ] Atualizei `status: doing` no card
-- [ ] Registrei a resolucao do bloqueio na secao de progresso com data
+- [ ] Registrei a resolução do bloqueio na seção de progresso com data
 
 ### doing -> done
 
 Antes de mover:
 
 - [ ] Implementei todos os passos do plano
-- [ ] Executei validacoes locais com sucesso
-- [ ] Marquei todos os criterios de aceite como [x]
+- [ ] Executei validações locais com sucesso
+- [ ] Marquei todos os critérios de aceite como [x]
 - [ ] Executei todos os testes (lint, build, unit tests, etc)
-- [ ] Adicionei timestamps de conclusao na secao de progresso
+- [ ] Adicionei timestamps de conclusão na seção de progresso
 - [ ] Atualizei `status: done` no card
 
 Ao mover:
 
 - [ ] Movi o arquivo de `2-doing/` para `4-done/`
 - [ ] Verifiquei que `status: done`
-- [ ] Verifiquei que todos os criterios estao marcados [x]
-- [ ] Verifiquei que todas as validacoes foram executadas [x]
+- [ ] Verifiquei que todos os critérios estão marcados [x]
+- [ ] Verifiquei que todas as validações foram executadas [x]
 
-## 12. Atualizacao do Backlog
+## 12. Atualização do Backlog
 
 - Ao criar cards a partir do backlog, manter rastreabilidade (`origem`).
-- Quando todos os cards de um item estiverem em `4-done`, marcar item como concluido no `0-backlog/backlog.md` com data.
-- Nao apagar historico de backlog; preferir marcacao de conclusao.
+- Quando todos os cards de um item estiverem em `4-done`, marcar item como concluído no `0-backlog/backlog.md` com data.
+- Não apagar histórico de backlog; preferir marcação de conclusão.
 
-## 13. Script de Validacao
+## 13. Script de Validação
 
-Cada repositorio que adota esta metodologia deve manter um script de validacao na raiz. O nome e formato do script sao livres (shell script, Makefile, npm script, etc.). O script deve cobrir, no minimo:
+Cada repositório que adota esta metodologia deve manter um script de validação na raiz. O nome e formato do script são livres (shell script, Makefile, npm script, etc.). O script deve cobrir, no mínimo:
 
-1. **Analise estatica / linting** — detectar erros de codigo e violacoes de estilo.
+1. **Análise estática / linting** — detectar erros de código e violações de estilo.
 2. **Testes automatizados** — executar a suite de testes do projeto.
 
-O script pode incluir etapas adicionais conforme a necessidade do projeto (cobertura, build, verificacao de tipos, etc.), desde que as duas etapas minimas estejam presentes.
+O script pode incluir etapas adicionais conforme a necessidade do projeto (cobertura, build, verificação de tipos, etc.), desde que as duas etapas mínimas estejam presentes.
 
-Se o projeto ainda nao possui o script, cria-lo e pre-requisito antes de mover qualquer card para `4-done/`.
+Se o projeto ainda não possui o script, criá-lo é pré-requisito antes de mover qualquer card para `4-done/`.
 
-## 14. Politica de Arquivamento
+## 14. Política de Arquivamento
 
-Cards em `4-done/` ha mais de 30 dias podem ser movidos para `5-archive/`. O arquivamento:
+Cards em `4-done/` há mais de 30 dias podem ser movidos para `5-archive/`. O arquivamento:
 
-- preserva o card integro (sem alteracoes)
+- preserva o card íntegro (sem alterações)
 - deve ser registrado no backlog quando todos os cards do item estiverem arquivados
-- pode ser executado via prompt de auditoria (ver `prompts.md` — secao 3.3)
+- pode ser executado via prompt de auditoria (ver `prompts.md` — seção 3.3)
 
-## 15. Definicao de Pronto (DoD)
+## 15. Definição de Pronto (DoD)
 
-Um card so esta pronto quando:
+Um card só está pronto quando:
 
-1. Implementacao concluida.
-2. Criterios de aceite marcados.
-3. Script de validacao do projeto executado com sucesso.
+1. Implementação concluída.
+2. Critérios de aceite marcados.
+3. Script de validação do projeto executado com sucesso.
 4. Card atualizado para `status: done`.
 5. Card movido para `4-done/`.

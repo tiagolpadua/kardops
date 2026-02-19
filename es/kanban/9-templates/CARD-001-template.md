@@ -1,37 +1,37 @@
-# CARD-XXX - Titulo corto y claro
+# CARD-XXX - Título corto y claro
 
 - id: CARD-XXX
-- titulo: Titulo corto y claro
+- titulo: Título corto y claro
 - status: todo
 - prioridad: P1
 - origen: 0-backlog/backlog.md#item-referencia
 - tamaño: P/M/G (opcional)
 
-## Descripcion
+## Descripción
 
-Contexto funcional o tecnico de la tarea.
+Contexto funcional o técnico de la tarea.
 
 ## Alcance
 
 - Incluye:
   - (lo que forma parte de esta entrega)
 - No incluye:
-  - (lo que esta fuera del alcance)
+  - (lo que está fuera del alcance)
 
-## Plan de Implementacion
+## Plan de Implementación
 
 1. Primer paso ejecutable.
 2. Segundo paso ejecutable.
 3. (...)
 
-## Criterios de Aceptacion
+## Criterios de Aceptación
 
 - [ ] Criterio verificable 1.
 - [ ] Criterio verificable 2.
 
-## Validacion
+## Validación
 
-- [ ] Script de validacion del proyecto ejecutado con exito
+- [ ] Script de validación del proyecto ejecutado con éxito
 
 ## Bloqueo
 
@@ -39,7 +39,7 @@ Contexto funcional o tecnico de la tarea.
 
 - Motivo:
 - Impacto:
-- Accion para desbloquear:
+- Acción para desbloquear:
 
 ## Progreso
 
