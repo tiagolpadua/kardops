@@ -1,13 +1,12 @@
 {
   "name": "kardops",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "KardOps documentation tooling",
   "scripts": {
     "prepare": "husky",
     "lint:md": "markdownlint-cli2 \"**/*.md\" \"#node_modules\"",
-    "lint:md:fix": "markdownlint-cli2 --fix \"**/*.md\" \"#node_modules\"",
-    "fix:md": "./scripts/fix-markdown.sh"
+    "lint:md:fix": "markdownlint-cli2 --fix \"**/*.md\" \"#node_modules\""
   },
   "devDependencies": {
     "husky": "^9.1.7",
