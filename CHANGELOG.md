@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Language documentation files (`README.md`, `instructions.md`, `prompts.md`) were relocated from each language root (`en/`, `es/`, `pt-br/`) to the Kanban package path (`<lang>/kanban/`) to keep distributable assets self-contained.
+- Project tooling version was bumped from `0.1.1` to `0.1.2` in `package.json` and `package-lock.json`.
+
 ## [0.1.1] - 2026-02-19
 
 ### Added
